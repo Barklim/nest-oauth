@@ -35,10 +35,12 @@ export class GoogleAuthenticationService {
       const user = await this.userRepository.findOneBy({ googleId });
       if (user) {
         // TODO: generateTokens
-        return this.authService.generateTokens(user);
+        // return this.authService.generateTokens(user);
+        return 'user';
       } else {
         const newUser = await this.userRepository.save({ email, googleId });
-        return this.authService.generateTokens(newUser);
+        // return this.authService.generateTokens(newUser);
+        return 'newUser';
       }
     } catch (err) {
       const pgUniqueViolationErrorCode = '23505';
